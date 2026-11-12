@@ -1,0 +1,1838 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IntegraLearn - Pembelajaran Integral</title>
+
+<!-- MATHJAX -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: {
+    fontCache: 'global'
+  },
+  startup: {
+    typeset: false
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f6fc;
+  color: #1e293b;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 16px;
+  background: #3157c8;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover { background: #203b91; }
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  margin: 7px 0 14px;
+}
+
+textarea { min-height: 100px; }
+
+label { font-weight: bold; }
+
+.hidden { display: none !important; }
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px #0000000d;
+  margin-bottom: 18px;
+}
+
+.login {
+  max-width: 440px;
+  margin: 6vh auto;
+  padding: 25px;
+}
+
+.login h1 {
+  text-align: center;
+  color: #3157c8;
+}
+
+.login button { margin: 4px; }
+
+.full { width: 100%; }
+
+header {
+  background: white;
+  padding: 15px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+header b {
+  color: #3157c8;
+  font-size: 20px;
+}
+
+main {
+  max-width: 1100px;
+  margin: 25px auto;
+  padding: 0 16px;
+}
+
+.welcome {
+  background: linear-gradient(120deg,#3157c8,#718cf0);
+  color: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 15px;
+}
+
+.tile {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.tile h3 { color: #3157c8; }
+
+.panel { margin-top: 20px; }
+
+.item {
+  padding: 14px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.item:last-child { border: 0; }
+
+.notice {
+  padding: 12px;
+  background: #fff4d6;
+  border-radius: 9px;
+  margin: 12px 0;
+}
+
+.error { color: #c62828; margin: 10px 0; }
+.success { color: #16803c; margin: 10px 0; }
+
+.small {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.nav button {
+  background: #e7edff;
+  color: #24439f;
+}
+
+.nav button:hover { background: #cdd9ff; }
+
+.danger { background: #d93636; }
+
+/* EQUATION MATEMATIKA */
+
+.equation-box {
+  background: #f3f6fc;
+  border: 1px solid #dce4f5;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 14px 0 20px;
+  text-align: center;
+  overflow-x: auto;
+  font-size: 19px;
+}
+
+.equation-box mjx-container {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* KUIS */
+
+.quiz-question {
+  padding: 20px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.quiz-question h3 {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  margin: 10px 0;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.quiz-option:hover {
+  background: #f3f6fc;
+  border-color: #3157c8;
+}
+
+.quiz-option input {
+  width: auto;
+  margin: 0;
+  accent-color: #3157c8;
+}
+
+.quiz-option span {
+  line-height: 1.6;
+}
+
+.quiz-header {
+  background: linear-gradient(120deg,#3157c8,#718cf0);
+  color: white;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.quiz-header h2 { margin: 8px 0; }
+
+.quiz-header p { margin-bottom: 0; }
+
+.quiz-label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.quiz-result {
+  padding: 20px;
+  background: #f3f6fc;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.quiz-score {
+  font-size: 48px;
+  font-weight: bold;
+  color: #3157c8;
+  margin: 12px 0;
+}
+
+.explanation {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 12px 0;
+  border-left: 4px solid #3157c8;
+  line-height: 1.7;
+}
+
+@media(max-width:600px) {
+  .login { margin: 20px 12px; }
+  .card { padding: 18px; }
+  .quiz-question { padding: 15px 0; }
+  .equation-box { font-size: 16px; }
+}
+
+
+/* FITUR TUGAS, PRESENSI, DAN DISKUSI */
+.feature-form { background:#f8faff; border:1px solid #e1e8f5; padding:16px; border-radius:12px; margin:14px 0; }
+.feature-item { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; margin:12px 0; }
+.feature-item h3 { margin-top:0; color:#24439f; }
+.feature-meta { color:#64748b; font-size:13px; margin:6px 0 12px; }
+.feature-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.feature-actions button { margin:0; }
+.secondary-btn { background:#64748b; }
+.secondary-btn:hover { background:#475569; }
+.status-pill { display:inline-block; padding:4px 9px; border-radius:20px; font-size:12px; font-weight:bold; background:#e7edff; color:#24439f; }
+.status-done { background:#dcfce7; color:#166534; }
+.status-warn { background:#fff4d6; color:#92400e; }
+.comment-box { background:#f8fafc; border-left:3px solid #718cf0; padding:10px 12px; border-radius:7px; margin:9px 0; }
+.feature-item textarea { min-height:75px; }
+@media(max-width:600px) { .feature-actions button { width:100%; } }
+
+</style>
+</head>
+
+<body>
+
+<!-- HALAMAN LOGIN -->
+
+<section id="authPage" class="login card">
+
+  <h1>📘 IntegraLearn</h1>
+  <p style="text-align:center">
+    Media Pembelajaran Matematika
+  </p>
+
+  <div class="nav">
+    <button onclick="showAuth('login')">Sign In</button>
+    <button onclick="showAuth('signup')">Sign Up</button>
+  </div>
+
+  <form id="loginForm">
+    <h2>Sign In</h2>
+
+    <label>Email</label>
+    <input id="loginEmail" type="email"
+      required placeholder="Masukkan email">
+
+    <label>Password</label>
+    <input id="loginPassword" type="password"
+      required placeholder="Masukkan password">
+
+    <button class="full" type="submit">Masuk</button>
+  </form>
+
+  <form id="signupForm" class="hidden">
+    <h2>Buat Akun</h2>
+
+    <label>Nama lengkap</label>
+    <input id="regName" required placeholder="Nama lengkap">
+
+    <label>Email</label>
+    <input id="regEmail" type="email"
+      required placeholder="Email aktif">
+
+    <label>Password</label>
+    <input id="regPassword" type="password"
+      minlength="6" required placeholder="Minimal 6 karakter">
+
+    <label>Daftar sebagai</label>
+    <select id="regRole" required>
+      <option value="student">Siswa</option>
+      <option value="teacher">Guru</option>
+    </select>
+
+    <button class="full" type="submit">Daftar</button>
+  </form>
+
+  <div id="authMessage" role="alert"></div>
+
+  <p class="small">
+    Pendaftaran Admin hanya dilakukan secara manual melalui Firebase.
+  </p>
+</section>
+
+<!-- HALAMAN APLIKASI -->
+
+<section id="appPage" class="hidden">
+
+<header>
+  <b>📘 IntegraLearn</b>
+
+  <div>
+    <span id="userLabel"></span>
+    <button class="danger" onclick="logout()">Keluar</button>
+  </div>
+</header>
+
+<main>
+
+  <div class="welcome">
+    <h1 id="welcomeTitle">Selamat datang!</h1>
+    <p id="welcomeText"></p>
+  </div>
+
+  <!-- DASHBOARD ADMIN -->
+
+  <section id="adminArea" class="hidden">
+
+    <div class="card">
+      <h2>Dashboard Admin</h2>
+      <p>Kelola pengguna dan persetujuan pendaftaran guru.</p>
+
+      <button onclick="loadAdminUsers()">
+        Muat ulang pengguna
+      </button>
+
+      <div id="adminUsers"></div>
+    </div>
+
+    <div class="grid">
+      <div class="tile"><h3>📋 Pemantauan Tugas</h3><p>Pantau tugas dan pengumpulan seluruh siswa.</p><button onclick="openPanel('adminAssignments')">Pantau tugas</button></div>
+      <div class="tile"><h3>📅 Pemantauan Presensi</h3><p>Lihat sesi dan rekap kehadiran siswa.</p><button onclick="openPanel('adminAttendance')">Pantau presensi</button></div>
+      <div class="tile"><h3>💬 Pemantauan Diskusi</h3><p>Lihat topik dan komentar diskusi.</p><button onclick="openPanel('adminDiscussions')">Pantau diskusi</button></div>
+    </div>
+    <div id="adminAssignments" class="card panel hidden"><h2>Pemantauan Tugas</h2><div id="adminAssignmentList"></div></div>
+    <div id="adminAttendance" class="card panel hidden"><h2>Pemantauan Presensi</h2><div id="adminAttendanceList"></div></div>
+    <div id="adminDiscussions" class="card panel hidden"><h2>Pemantauan Diskusi</h2><div id="adminDiscussionList"></div></div>
+
+  </section>
+
+  <!-- DASHBOARD GURU -->
+
+  <section id="teacherArea" class="hidden">
+
+    <div class="grid">
+
+      <div class="tile">
+        <h3>📚 Materi</h3>
+        <p>Tambahkan dan kelola materi pembelajaran.</p>
+        <button onclick="openPanel('teacherMaterials')">
+          Kelola materi
+        </button>
+      </div>
+
+      <div class="tile">
+        <h3>📝 Kuis</h3>
+        <p>Buat soal pilihan ganda untuk siswa.</p>
+        <button onclick="openPanel('teacherQuestions')">
+          Kelola kuis
+        </button>
+      </div>
+
+      <div class="tile">
+        <h3>📊 Nilai siswa</h3>
+        <p>Lihat hasil pengerjaan kuis siswa.</p>
+        <button onclick="openPanel('teacherScores')">Lihat nilai</button>
+      </div>
+      <div class="tile"><h3>📋 Tugas</h3><p>Buat tugas, tentukan tenggat, dan nilai pengumpulan siswa.</p><button onclick="openPanel('teacherAssignments')">Kelola tugas</button></div>
+      <div class="tile"><h3>📅 Presensi</h3><p>Buat sesi presensi dan pantau kehadiran siswa.</p><button onclick="openPanel('teacherAttendance')">Kelola presensi</button></div>
+      <div class="tile"><h3>💬 Diskusi</h3><p>Buat topik dan tanggapi diskusi siswa.</p><button onclick="openPanel('teacherDiscussions')">Buka diskusi</button></div>
+
+    </div>
+
+    <!-- MATERI GURU -->
+
+    <div id="teacherMaterials" class="card panel hidden">
+
+      <h2>Tambah Materi</h2>
+
+      <label>Judul materi</label>
+      <input id="materialTitle" placeholder="Judul materi">
+
+      <label>Isi materi</label>
+      <textarea id="materialBody"
+        placeholder="Tuliskan materi di sini"></textarea>
+
+      <button onclick="addMaterial()">Simpan materi</button>
+
+      <div id="teacherMaterialList"></div>
+
+    </div>
+
+    <!-- KUIS GURU -->
+
+    <div id="teacherQuestions" class="card panel hidden">
+
+      <h2>Tambah Kuis Integral</h2>
+
+      <p class="small">
+        Masukkan pertanyaan dan rumus matematika menggunakan LaTeX.
+      </p>
+
+      <label>Pertanyaan</label>
+      <input id="questionText"
+        placeholder="Tuliskan pertanyaan">
+
+      <label>Persamaan Matematika (LaTeX)</label>
+      <textarea id="questionEquation"
+        placeholder="\int (3x^2+4x-2)\,dx"></textarea>
+
+      <p class="small">
+        Contoh: \int x^2\,dx
+        <br>
+        Tulis tanpa tanda pembungkus $ atau \[ \].
+      </p>
+
+      <label>Pilihan A</label>
+      <input id="optionA" placeholder="Contoh: $\frac{x^3}{3}+C$">
+
+      <label>Pilihan B</label>
+      <input id="optionB" placeholder="Pilihan B">
+
+      <label>Pilihan C</label>
+      <input id="optionC" placeholder="Pilihan C">
+
+      <label>Pilihan D</label>
+      <input id="optionD" placeholder="Pilihan D">
+
+      <label>Jawaban benar</label>
+      <select id="correctAnswer">
+        <option value="0">A</option>
+        <option value="1">B</option>
+        <option value="2">C</option>
+        <option value="3">D</option>
+      </select>
+
+      <button onclick="addQuestion()">Simpan soal</button>
+
+      <div id="teacherQuestionList"></div>
+
+    </div>
+
+    <!-- NILAI GURU -->
+
+    <div id="teacherScores" class="card panel hidden">
+      <h2>Nilai Siswa</h2><div id="scoreList"></div>
+    </div>
+    <div id="teacherAssignments" class="card panel hidden">
+      <h2>Kelola Tugas</h2>
+      <div class="feature-form">
+        <label>Judul tugas</label><input id="assignmentTitle" placeholder="Contoh: Latihan Integral Tak Tentu">
+        <label>Deskripsi / instruksi</label><textarea id="assignmentDescription" placeholder="Tuliskan instruksi pengerjaan tugas"></textarea>
+        <label>Batas pengumpulan</label><input id="assignmentDue" type="datetime-local">
+        <button onclick="addAssignment()">Publikasikan tugas</button>
+      </div>
+      <h3>Daftar tugas dan pengumpulan</h3><div id="teacherAssignmentList"></div>
+    </div>
+    <div id="teacherAttendance" class="card panel hidden">
+      <h2>Kelola Presensi</h2>
+      <div class="feature-form">
+        <label>Nama sesi / pertemuan</label><input id="attendanceTitle" placeholder="Contoh: Pertemuan 1 - Integral">
+        <label>Tanggal pertemuan</label><input id="attendanceDate" type="date">
+        <button onclick="createAttendanceSession()">Buat sesi presensi</button>
+      </div>
+      <h3>Sesi presensi dan rekap kehadiran</h3><div id="teacherAttendanceList"></div>
+    </div>
+    <div id="teacherDiscussions" class="card panel hidden">
+      <h2>Ruang Diskusi</h2>
+      <div class="feature-form">
+        <label>Judul topik</label><input id="discussionTitle" placeholder="Contoh: Diskusi penerapan integral">
+        <label>Pertanyaan / topik diskusi</label><textarea id="discussionContent" placeholder="Tuliskan topik yang akan didiskusikan"></textarea>
+        <button onclick="createDiscussion()">Buat topik diskusi</button>
+      </div>
+      <div id="teacherDiscussionList"></div>
+    </div>
+
+  </section>
+
+  <!-- DASHBOARD SISWA -->
+
+  <section id="studentArea" class="hidden">
+
+    <div class="grid">
+
+      <div class="tile">
+        <h3>📚 Materi Pembelajaran</h3>
+        <p>Pelajari materi integral yang dibagikan guru.</p>
+        <button onclick="openPanel('studentMaterials')">
+          Buka materi
+        </button>
+      </div>
+
+      <div class="tile">
+        <h3>📝 Kuis dan Latihan</h3><p>Kerjakan soal dan lihat hasil belajarmu.</p>
+        <button onclick="openPanel('studentQuestions')">Mulai kuis</button>
+      </div>
+      <div class="tile"><h3>📋 Tugas</h3><p>Lihat instruksi, tenggat, dan kumpulkan tugas.</p><button onclick="openPanel('studentAssignments')">Buka tugas</button></div>
+      <div class="tile"><h3>📅 Presensi</h3><p>Isi presensi pertemuan dan lihat riwayat kehadiran.</p><button onclick="openPanel('studentAttendance')">Isi presensi</button></div>
+      <div class="tile"><h3>💬 Diskusi</h3><p>Bertanya dan berdiskusi bersama guru serta siswa lain.</p><button onclick="openPanel('studentDiscussions')">Buka diskusi</button></div>
+
+    </div>
+
+    <div id="studentMaterials" class="card panel hidden">
+      <h2>Materi Pembelajaran</h2>
+      <div id="studentMaterialList"></div>
+    </div>
+
+    <div id="studentQuestions" class="card panel hidden"><h2>Kuis Matematika</h2><div id="studentQuestionList"></div></div>
+    <div id="studentAssignments" class="card panel hidden"><h2>Tugas Saya</h2><div id="studentAssignmentList"></div></div>
+    <div id="studentAttendance" class="card panel hidden"><h2>Presensi Saya</h2><p class="small">Pilih sesi yang sedang dibuka guru, lalu tekan tombol Hadir. Satu akun hanya dapat mengisi satu kali untuk setiap sesi.</p><div id="studentAttendanceList"></div></div>
+    <div id="studentDiscussions" class="card panel hidden"><h2>Ruang Diskusi</h2><div class="feature-form"><label>Judul topik baru</label><input id="studentDiscussionTitle" placeholder="Judul pertanyaan atau topik"><label>Pertanyaan / isi diskusi</label><textarea id="studentDiscussionContent" placeholder="Tuliskan pertanyaan atau pendapatmu"></textarea><button onclick="createStudentDiscussion()">Kirim topik</button></div><div id="studentDiscussionList"></div></div>
+
+  </section>
+
+</main>
+</section>
+
+<!-- FIREBASE DAN JAVASCRIPT -->
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+/* KONFIGURASI FIREBASE */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCMiAsrEQ1fUI9BYyLZSxwJjjrthDK8_ks",
+  authDomain: "integralearn-d5019.firebaseapp.com",
+  projectId: "integralearn-d5019",
+  storageBucket: "integralearn-d5019.firebasestorage.app",
+  messagingSenderId: "934521801411",
+  appId: "1:934521801411:web:119e52563f76cbe9eab076",
+  measurementId: "G-WS7XPJE7RS"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentUser = null;
+let currentRole = null;
+let currentName = "";
+let ignoreAuthChange = false;
+
+const $ = id => document.getElementById(id);
+
+/* FUNGSI MATHJAX */
+
+async function renderMath(element) {
+  try {
+    await window.MathJax.startup.promise;
+    await window.MathJax.typesetPromise([element]);
+  } catch (error) {
+    console.error("Gagal menampilkan equation:", error);
+  }
+}
+
+/* SOAL KUIS INTEGRAL DEFAULT */
+
+const defaultQuestions = [
+
+  {
+    question: "Hasil dari integral tak tentu berikut adalah:",
+    equation: "\\int (3x^2+4x-2)\\,dx",
+    options: [
+      "$x^3+2x^2-2x+C$",
+      "$3x^3+4x^2-2x+C$",
+      "$x^3+4x^2-2+C$",
+      "$6x+4+C$"
+    ],
+    answer: 0,
+    explanation:
+      "Gunakan sifat penjumlahan integral dan rumus dasar integral pangkat. Hasilnya adalah x³ + 2x² − 2x + C."
+  },
+
+  {
+    question: "Hasil dari integral substitusi berikut adalah:",
+    equation: "\\int 2x(x^2+3)^4\\,dx",
+    options: [
+      "$\\frac{(x^2+3)^5}{5}+C$",
+      "$(x^2+3)^5+C$",
+      "$\\frac{(x^2+3)^4}{4}+C$",
+      "$2(x^2+3)^5+C$"
+    ],
+    answer: 0,
+    explanation:
+      "Misalkan u = x² + 3, sehingga du = 2x dx. Integral menjadi ∫u⁴ du = u⁵/5 + C."
+  },
+
+  {
+    question: "Hasil dari integral parsial berikut adalah:",
+    equation: "\\int xe^x\\,dx",
+    options: [
+      "$xe^x+e^x+C$",
+      "$xe^x-e^x+C$",
+      "$x^2e^x+C$",
+      "$e^x+C$"
+    ],
+    answer: 1,
+    explanation:
+      "Gunakan rumus integral parsial ∫u dv = uv − ∫v du. Ambil u = x dan dv = eˣ dx. Hasilnya xeˣ − eˣ + C."
+  },
+
+  {
+    question: "Nilai dari integral tentu berikut adalah:",
+    equation: "\\int_0^3 2x\\,dx",
+    options: [
+      "$3$",
+      "$6$",
+      "$9$",
+      "$12$"
+    ],
+    answer: 2,
+    explanation:
+      "Antiturunan dari 2x adalah x². Substitusikan batas atas dan bawah: 3² − 0² = 9."
+  },
+
+  {
+    question: "Luas daerah di bawah kurva y = 2x dan di atas sumbu-X dari x = 0 sampai x = 2 adalah:",
+    equation: "L=\\int_0^2 2x\\,dx",
+    options: [
+      "2 satuan luas",
+      "4 satuan luas",
+      "6 satuan luas",
+      "8 satuan luas"
+    ],
+    answer: 1,
+    explanation:
+      "Luas diperoleh dari integral tentu. Hasilnya [x²] dari 0 sampai 2 = 4 satuan luas."
+  }
+
+];
+
+/* LOGIN DAN SIGN UP */
+
+window.showAuth = function(type) {
+  $("loginForm").classList.toggle("hidden", type !== "login");
+  $("signupForm").classList.toggle("hidden", type !== "signup");
+  $("authMessage").textContent = "";
+};
+
+function message(text, type="error") {
+  $("authMessage").className = type;
+  $("authMessage").textContent = text;
+}
+
+function showApp(role, name, email) {
+
+  currentRole = role;
+  currentName = name;
+  currentUser = auth.currentUser;
+
+  $("authPage").classList.add("hidden");
+  $("appPage").classList.remove("hidden");
+
+  $("userLabel").textContent = name + " (" + email + ")";
+  $("welcomeTitle").textContent = "Halo, " + name + "!";
+
+  $("welcomeText").textContent =
+    role === "admin" ? "Kelola akun pengguna IntegraLearn." :
+    role === "teacher" ? "Selamat datang di dashboard Guru." :
+    "Selamat belajar di IntegraLearn!";
+
+  ["adminArea","teacherArea","studentArea"].forEach(id =>
+    $(id).classList.add("hidden")
+  );
+
+  if (role === "admin") {
+    $("adminArea").classList.remove("hidden");
+    loadAdminUsers();
+  } else if (role === "teacher") {
+    $("teacherArea").classList.remove("hidden");
+  } else {
+    $("studentArea").classList.remove("hidden");
+    loadStudentMaterials();
+    loadStudentQuestions();
+  }
+}
+
+async function checkAccount(user) {
+
+  const adminRef = doc(db, "admins", user.uid);
+  const adminSnap = await getDoc(adminRef);
+
+  if (adminSnap.exists()) {
+    showApp("admin", "Administrator", user.email);
+    return;
+  }
+
+  const userRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userRef);
+
+  if (!userSnap.exists()) {
+    await signOut(auth);
+    $("authPage").classList.remove("hidden");
+    message("Data akun tidak ditemukan. Silakan hubungi Admin.");
+    return;
+  }
+
+  const data = userSnap.data();
+
+  if (data.status === "pending") {
+    await signOut(auth);
+    $("authPage").classList.remove("hidden");
+    message("Pendaftaran Guru masih menunggu persetujuan Admin.");
+    return;
+  }
+
+  if (data.status === "rejected") {
+    await signOut(auth);
+    $("authPage").classList.remove("hidden");
+    message("Pendaftaran akun Guru ditolak oleh Admin.");
+    return;
+  }
+
+  if (data.status !== "active") {
+    await signOut(auth);
+    $("authPage").classList.remove("hidden");
+    message("Status akun belum aktif.");
+    return;
+  }
+
+  showApp(data.role, data.name, user.email);
+}
+
+/* SIGN UP */
+
+$("signupForm").addEventListener("submit", async e => {
+
+  e.preventDefault();
+
+  const name = $("regName").value.trim();
+  const email = $("regEmail").value.trim();
+  const password = $("regPassword").value;
+  const role = $("regRole").value;
+
+  try {
+
+    ignoreAuthChange = true;
+
+    const result = await createUserWithEmailAndPassword(
+      auth, email, password
+    );
+
+    const status = role === "student" ? "active" : "pending";
+
+    await setDoc(doc(db, "users", result.user.uid), {
+      uid: result.user.uid,
+      name,
+      email,
+      role,
+      status,
+      createdAt: serverTimestamp()
+    });
+
+    if (role === "teacher") {
+
+      await signOut(auth);
+
+      showAuth("login");
+      message(
+        "Pendaftaran Guru berhasil. Silakan tunggu persetujuan Admin.",
+        "success"
+      );
+
+    } else {
+
+      showApp("student", name, email);
+
+    }
+
+  } catch (error) {
+
+    message("Pendaftaran gagal: " + error.message);
+
+  } finally {
+
+    ignoreAuthChange = false;
+
+  }
+
+});
+
+/* SIGN IN */
+
+$("loginForm").addEventListener("submit", async e => {
+
+  e.preventDefault();
+
+  try {
+
+    const email = $("loginEmail").value.trim();
+    const password = $("loginPassword").value;
+
+    const result = await signInWithEmailAndPassword(
+      auth, email, password
+    );
+
+    await checkAccount(result.user);
+
+  } catch (error) {
+
+    message("Login gagal: " + error.message);
+
+  }
+
+});
+
+/* LOGIN OTOMATIS */
+
+onAuthStateChanged(auth, async user => {
+
+  if (ignoreAuthChange || !user) return;
+
+  try {
+
+    await checkAccount(user);
+
+  } catch (error) {
+
+    console.error(error);
+    message("Tidak dapat memeriksa akun: " + error.message);
+
+  }
+
+});
+
+/* LOGOUT */
+
+window.logout = async function() {
+
+  await signOut(auth);
+
+  currentUser = null;
+  currentRole = null;
+
+  $("appPage").classList.add("hidden");
+  $("authPage").classList.remove("hidden");
+
+  showAuth("login");
+
+};
+
+/* NAVIGASI PANEL */
+
+window.openPanel = function(id) {
+
+  document.querySelectorAll(".panel").forEach(panel =>
+    panel.classList.add("hidden")
+  );
+
+  $(id).classList.remove("hidden");
+
+  if (id === "teacherMaterials") loadTeacherMaterials();
+  if (id === "teacherQuestions") loadTeacherQuestions();
+  if (id === "teacherScores") loadScores();
+  if (id === "studentMaterials") loadStudentMaterials();
+  if (id === "studentQuestions") loadStudentQuestions();
+  if (id === "teacherAssignments") loadTeacherAssignments();
+  if (id === "studentAssignments") loadStudentAssignments();
+  if (id === "teacherAttendance") loadTeacherAttendance();
+  if (id === "studentAttendance") loadStudentAttendance();
+  if (id === "teacherDiscussions") loadDiscussions("teacherDiscussionList");
+  if (id === "studentDiscussions") loadDiscussions("studentDiscussionList");
+  if (id === "adminAssignments") loadAdminAssignments();
+  if (id === "adminAttendance") loadAdminAttendance();
+  if (id === "adminDiscussions") loadAdminDiscussions();
+
+};
+
+/* ADMIN */
+
+window.loadAdminUsers = async function() {
+
+  const host = $("adminUsers");
+  host.innerHTML = "Memuat pengguna...";
+
+  try {
+
+    const snap = await getDocs(collection(db, "users"));
+
+    host.innerHTML = "<h3>Daftar pengguna</h3>";
+
+    if (snap.empty) {
+      host.innerHTML += "<p>Belum ada pengguna terdaftar.</p>";
+      return;
+    }
+
+    snap.forEach(item => {
+
+      const u = item.data();
+      const div = document.createElement("div");
+      div.className = "item";
+
+      const title = document.createElement("b");
+      title.textContent = u.name + " — " + u.email;
+
+      const detail = document.createElement("p");
+      detail.textContent =
+        "Peran: " + u.role + " | Status: " + u.status;
+
+      div.append(title, detail);
+
+      if (u.role === "teacher" && u.status === "pending") {
+
+        const approve = document.createElement("button");
+        approve.textContent = "Setujui";
+        approve.onclick = () => approveTeacher(item.id);
+
+        const reject = document.createElement("button");
+        reject.textContent = "Tolak";
+        reject.className = "danger";
+        reject.onclick = () => rejectTeacher(item.id);
+
+        div.append(approve, reject);
+
+      }
+
+      host.appendChild(div);
+
+    });
+
+  } catch (error) {
+
+    host.textContent = "Gagal memuat pengguna: " + error.message;
+
+  }
+
+};
+
+async function approveTeacher(uid) {
+
+  try {
+
+    await updateDoc(doc(db, "users", uid), {
+      status: "active"
+    });
+
+    alert("Akun Guru berhasil disetujui.");
+    loadAdminUsers();
+
+  } catch (error) {
+
+    alert("Gagal menyetujui akun: " + error.message);
+
+  }
+
+}
+
+async function rejectTeacher(uid) {
+
+  try {
+
+    await updateDoc(doc(db, "users", uid), {
+      status: "rejected"
+    });
+
+    alert("Pendaftaran Guru ditolak.");
+    loadAdminUsers();
+
+  } catch (error) {
+
+    alert("Gagal menolak akun: " + error.message);
+
+  }
+
+}
+
+/* GURU: TAMBAH MATERI */
+
+window.addMaterial = async function() {
+
+  const title = $("materialTitle").value.trim();
+  const body = $("materialBody").value.trim();
+
+  if (!title || !body) {
+    alert("Judul dan isi materi harus diisi.");
+    return;
+  }
+
+  try {
+
+    await addDoc(collection(db, "materials"), {
+      title,
+      body,
+      createdBy: auth.currentUser.uid,
+      createdAt: serverTimestamp()
+    });
+
+    $("materialTitle").value = "";
+    $("materialBody").value = "";
+
+    alert("Materi berhasil disimpan.");
+
+    loadTeacherMaterials();
+
+  } catch (error) {
+
+    alert("Gagal menyimpan materi: " + error.message);
+
+  }
+
+};
+
+async function loadTeacherMaterials() {
+
+  const host = $("teacherMaterialList");
+  host.innerHTML = "Memuat materi...";
+
+  try {
+
+    const snap = await getDocs(collection(db, "materials"));
+
+    host.innerHTML = "<h3>Daftar materi</h3>";
+
+    snap.forEach(item => {
+
+      const m = item.data();
+
+      const div = document.createElement("div");
+      div.className = "item";
+
+      const h = document.createElement("b");
+      h.textContent = m.title;
+
+      const p = document.createElement("p");
+      p.textContent = m.body;
+
+      div.append(h, p);
+      host.appendChild(div);
+
+    });
+
+  } catch (error) {
+
+    host.textContent = "Gagal memuat materi: " + error.message;
+
+  }
+
+}
+
+/* SISWA: MELIHAT MATERI */
+
+async function loadStudentMaterials() {
+
+  const host = $("studentMaterialList");
+  host.innerHTML = "Memuat materi...";
+
+  try {
+
+    const snap = await getDocs(collection(db, "materials"));
+
+    host.innerHTML = "";
+
+    if (snap.empty) {
+      host.textContent = "Belum ada materi dari Guru.";
+      return;
+    }
+
+    snap.forEach(item => {
+
+      const m = item.data();
+
+      const div = document.createElement("div");
+      div.className = "item";
+
+      const h = document.createElement("h3");
+      h.textContent = m.title;
+
+      const p = document.createElement("p");
+      p.textContent = m.body;
+
+      div.append(h, p);
+      host.appendChild(div);
+
+    });
+
+  } catch (error) {
+
+    host.textContent = "Gagal memuat materi: " + error.message;
+
+  }
+
+}
+
+/* GURU: TAMBAH KUIS */
+
+window.addQuestion = async function() {
+
+  const question = $("questionText").value.trim();
+  const equation = $("questionEquation").value.trim();
+
+  const options = [
+    $("optionA").value.trim(),
+    $("optionB").value.trim(),
+    $("optionC").value.trim(),
+    $("optionD").value.trim()
+  ];
+
+  const answer = Number($("correctAnswer").value);
+
+  if (!question || !equation || options.some(x => !x)) {
+    alert("Pertanyaan, equation, dan semua pilihan harus diisi.");
+    return;
+  }
+
+  try {
+
+    await addDoc(collection(db, "questions"), {
+      question,
+      equation,
+      options,
+      answer,
+      createdBy: auth.currentUser.uid,
+      createdAt: serverTimestamp()
+    });
+
+    [
+      "questionText",
+      "questionEquation",
+      "optionA",
+      "optionB",
+      "optionC",
+      "optionD"
+    ].forEach(id => $(id).value = "");
+
+    alert("Soal berhasil disimpan!");
+
+    loadTeacherQuestions();
+
+  } catch (error) {
+
+    alert("Gagal menyimpan soal: " + error.message);
+
+  }
+
+};
+
+/* GURU: MELIHAT KUIS */
+
+async function loadTeacherQuestions() {
+
+  const host = $("teacherQuestionList");
+  host.innerHTML = "Memuat soal...";
+
+  try {
+
+    const snap = await getDocs(collection(db, "questions"));
+
+    host.innerHTML = "<h3>Daftar soal tersimpan</h3>";
+
+    if (snap.empty) {
+      host.innerHTML +=
+        "<p>Belum ada soal tambahan dari Guru. Lima soal integral bawaan sudah tersedia untuk siswa.</p>";
+      return;
+    }
+
+    snap.forEach((item, index) => {
+
+      const q = item.data();
+
+      const box = document.createElement("div");
+      box.className = "item";
+
+      const title = document.createElement("p");
+      title.textContent = (index + 1) + ". " + q.question;
+
+      box.appendChild(title);
+
+      if (q.equation) {
+
+        const equation = document.createElement("div");
+        equation.className = "equation-box";
+        equation.textContent = "\\[" + q.equation + "\\]";
+
+        box.appendChild(equation);
+
+      }
+
+      q.options.forEach((option, i) => {
+
+        const p = document.createElement("p");
+        p.textContent =
+          String.fromCharCode(65 + i) + ". " + option;
+
+        box.appendChild(p);
+
+      });
+
+      host.appendChild(box);
+
+    });
+
+    await renderMath(host);
+
+  } catch (error) {
+
+    host.textContent = "Gagal memuat soal: " + error.message;
+
+  }
+
+}
+
+/* SISWA: MENGERJAKAN KUIS */
+
+async function loadStudentQuestions() {
+
+  const host = $("studentQuestionList");
+  host.innerHTML = "Memuat kuis...";
+
+  try {
+
+    const snap = await getDocs(collection(db, "questions"));
+
+    // Jika Guru belum menambahkan soal,
+    // tampilkan lima soal integral bawaan.
+    const questions = snap.empty
+      ? defaultQuestions
+      : snap.docs.map(d => ({
+          id: d.id,
+          ...d.data()
+        }));
+
+    host.innerHTML = "";
+
+    const header = document.createElement("div");
+    header.className = "quiz-header";
+
+    const heading = document.createElement("div");
+    heading.className = "quiz-label";
+    heading.textContent = "KUIS MATEMATIKA SMA";
+
+    const title = document.createElement("h2");
+    title.textContent = "Kuis Integral";
+
+    const description = document.createElement("p");
+    description.textContent =
+      questions.length + " Soal • Pilihan Ganda";
+
+    header.append(heading, title, description);
+    host.appendChild(header);
+
+    const form = document.createElement("form");
+
+    questions.forEach((q, i) => {
+
+      const box = document.createElement("div");
+      box.className = "quiz-question";
+
+      const title = document.createElement("h3");
+      title.textContent = (i + 1) + ". " + q.question;
+
+      box.appendChild(title);
+
+      // EQUATION
+      if (q.equation) {
+
+        const equationBox = document.createElement("div");
+        equationBox.className = "equation-box";
+
+        equationBox.textContent =
+          "\\[" + q.equation + "\\]";
+
+        box.appendChild(equationBox);
+
+      }
+
+      // PILIHAN JAWABAN
+      q.options.forEach((option, j) => {
+
+        const label = document.createElement("label");
+        label.className = "quiz-option";
+
+        const radio = document.createElement("input");
+
+        radio.type = "radio";
+        radio.name = "question" + i;
+        radio.value = j;
+        radio.required = true;
+
+        const text = document.createElement("span");
+        text.textContent =
+          String.fromCharCode(65 + j) + ". " + option;
+
+        label.append(radio, text);
+
+        box.appendChild(label);
+
+      });
+
+      form.appendChild(box);
+
+    });
+
+    const submit = document.createElement("button");
+
+    submit.type = "submit";
+    submit.textContent = "Kirim Jawaban";
+
+    form.appendChild(submit);
+
+    const result = document.createElement("div");
+
+    host.append(form, result);
+
+    // Render seluruh rumus matematika
+    await renderMath(host);
+
+    // PROSES PENILAIAN
+    form.addEventListener("submit", async e => {
+
+      e.preventDefault();
+
+      let score = 0;
+      const details = [];
+
+      questions.forEach((q, i) => {
+
+        const selected = form.querySelector(
+          'input[name="question' + i + '"]:checked'
+        );
+
+        const selectedAnswer = Number(selected.value);
+        const isCorrect = selectedAnswer === q.answer;
+
+        if (isCorrect) score++;
+
+        details.push({
+          question: q.question,
+          correct: isCorrect,
+          selected: selectedAnswer,
+          answer: q.answer,
+          explanation: q.explanation ||
+            "Periksa kembali rumus dan langkah penyelesaian integral."
+        });
+
+      });
+
+      const total = questions.length;
+
+      const percentage = Math.round(
+        score / total * 100
+      );
+
+      try {
+
+        // SIMPAN NILAI KE FIREBASE
+        await addDoc(collection(db, "scores"), {
+
+          uid: auth.currentUser.uid,
+          name: currentName,
+          score,
+          total,
+          percentage,
+          createdAt: serverTimestamp()
+
+        });
+
+        // TAMPILKAN HASIL
+        result.className = "quiz-result";
+
+        const resultTitle = document.createElement("h2");
+        resultTitle.textContent = "Hasil Kuis Kamu";
+
+        const scoreNumber = document.createElement("div");
+        scoreNumber.className = "quiz-score";
+        scoreNumber.textContent = percentage;
+
+        const scoreText = document.createElement("p");
+        scoreText.textContent =
+          "Kamu menjawab benar " + score +
+          " dari " + total + " soal.";
+
+        const message = document.createElement("p");
+        message.textContent =
+          percentage >= 80
+          ? "Hebat! Pemahaman integral kamu sangat baik."
+          : percentage >= 60
+          ? "Bagus! Terus tingkatkan pemahamanmu."
+          : "Tetap semangat! Pelajari kembali materi integral.";
+
+        result.append(
+          resultTitle,
+          scoreNumber,
+          scoreText,
+          message
+        );
+
+        // PEMBAHASAN
+        const heading = document.createElement("h3");
+        heading.textContent = "Pembahasan Jawaban";
+
+        result.appendChild(heading);
+
+        details.forEach((detail, i) => {
+
+          const explanation = document.createElement("div");
+          explanation.className = "explanation";
+
+          const status = document.createElement("h4");
+
+          status.textContent =
+            "Soal " + (i + 1) +
+            (detail.correct ? " — Benar ✓" : " — Belum tepat ✗");
+
+          const answerText = document.createElement("p");
+
+          answerText.textContent =
+            "Jawaban benar: " +
+            String.fromCharCode(65 + detail.answer);
+
+          const discussion = document.createElement("p");
+          discussion.textContent = detail.explanation;
+
+          explanation.append(
+            status,
+            answerText,
+            discussion
+          );
+
+          result.appendChild(explanation);
+
+        });
+
+        // Nonaktifkan semua pilihan setelah dikirim
+        form.querySelectorAll(
+          "input, button"
+        ).forEach(el => el.disabled = true);
+
+        result.scrollIntoView({ behavior: "smooth" });
+
+      } catch (error) {
+
+        result.textContent =
+          "Gagal menyimpan nilai: " + error.message;
+
+      }
+
+    });
+
+  } catch (error) {
+
+    host.textContent = "Gagal memuat kuis: " + error.message;
+
+  }
+
+}
+
+/* GURU: MELIHAT NILAI */
+
+async function loadScores() {
+
+  const host = $("scoreList");
+  host.innerHTML = "Memuat nilai...";
+
+  try {
+
+    const snap = await getDocs(collection(db, "scores"));
+
+    host.innerHTML = "";
+
+    if (snap.empty) {
+      host.textContent = "Belum ada nilai siswa.";
+      return;
+    }
+
+    snap.forEach(item => {
+
+      const s = item.data();
+
+      const div = document.createElement("div");
+      div.className = "item";
+
+      div.textContent =
+        s.name + " — " +
+        s.score + "/" + s.total +
+        " (" + s.percentage + "%)";
+
+      host.appendChild(div);
+
+    });
+
+  } catch (error) {
+
+    host.textContent = "Gagal memuat nilai: " + error.message;
+
+  }
+
+}
+
+
+
+/* =========================================================
+   FITUR TAMBAHAN: TUGAS, PRESENSI, DAN DISKUSI
+   ========================================================= */
+
+function makeFeatureCard(title, meta, body) {
+  const box = document.createElement("div");
+  box.className = "feature-item";
+  const h = document.createElement("h3"); h.textContent = title || "Tanpa judul";
+  const m = document.createElement("div"); m.className = "feature-meta"; m.textContent = meta || "";
+  const p = document.createElement("p"); p.textContent = body || "";
+  box.append(h, m, p);
+  return box;
+}
+
+function formatDate(value) {
+  if (!value) return "Belum ditentukan";
+  const d = value.toDate ? value.toDate() : new Date(value);
+  if (Number.isNaN(d.getTime())) return String(value);
+  return d.toLocaleString("id-ID", { dateStyle:"medium", timeStyle:"short" });
+}
+
+function addStatus(parent, text, kind="") {
+  const span = document.createElement("span");
+  span.className = "status-pill " + kind;
+  span.textContent = text;
+  parent.appendChild(span);
+}
+
+function addAction(parent, text, callback, className="") {
+  const button = document.createElement("button");
+  button.textContent = text;
+  if (className) button.className = className;
+  button.addEventListener("click", callback);
+  parent.appendChild(button);
+  return button;
+}
+
+async function getCollection(name) {
+  const snap = await getDocs(collection(db, name));
+  return snap.docs.map(d => ({ id:d.id, ...d.data() }));
+}
+
+/* ------------------------- TUGAS ------------------------- */
+window.addAssignment = async function() {
+  const title = $("assignmentTitle").value.trim();
+  const description = $("assignmentDescription").value.trim();
+  const dueAt = $("assignmentDue").value;
+  if (!title || !description || !dueAt) return alert("Judul, instruksi, dan batas pengumpulan wajib diisi.");
+  try {
+    await addDoc(collection(db, "assignments"), {
+      title, description, dueAt,
+      createdBy: auth.currentUser.uid,
+      teacherName: currentName,
+      createdAt: serverTimestamp(),
+      active: true
+    });
+    $("assignmentTitle").value = "";
+    $("assignmentDescription").value = "";
+    $("assignmentDue").value = "";
+    alert("Tugas berhasil dipublikasikan.");
+    loadTeacherAssignments();
+  } catch (e) { alert("Gagal membuat tugas: " + e.message); }
+};
+
+async function loadTeacherAssignments() {
+  const host = $("teacherAssignmentList"); host.textContent = "Memuat tugas...";
+  try {
+    const [allTasks, submissions] = await Promise.all([getCollection("assignments"), getCollection("submissions")]);
+    const tasks = allTasks.filter(task => task.createdBy === auth.currentUser.uid);
+    host.innerHTML = "";
+    if (!tasks.length) { host.textContent = "Belum ada tugas yang kamu buat."; return; }
+    tasks.sort((a,b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+    tasks.forEach(task => {
+      const card = makeFeatureCard(task.title, "Batas: " + formatDate(task.dueAt), task.description);
+      const ownSubs = submissions.filter(x => x.assignmentId === task.id);
+      const summary = document.createElement("p"); summary.textContent = "Pengumpulan: " + ownSubs.length + " siswa"; card.appendChild(summary);
+      ownSubs.forEach(sub => {
+        const row = document.createElement("div"); row.className = "comment-box";
+        const info = document.createElement("p"); info.textContent = sub.studentName + " — " + (sub.grade !== undefined ? "Nilai: " + sub.grade : "Belum dinilai");
+        const answer = document.createElement("p"); answer.textContent = "Jawaban: " + (sub.answer || "-");
+        const feedback = document.createElement("p"); feedback.textContent = "Umpan balik: " + (sub.feedback || "Belum ada");
+        row.append(info, answer, feedback);
+        if (sub.attachmentUrl) { const a = document.createElement("a"); a.href = sub.attachmentUrl; a.target = "_blank"; a.rel="noopener"; a.textContent="Buka tautan lampiran"; row.appendChild(a); }
+        addAction(row, "Beri / ubah nilai", async () => {
+          const grade = prompt("Masukkan nilai 0–100:", sub.grade ?? "");
+          if (grade === null) return;
+          const n = Number(grade); if (!Number.isFinite(n) || n < 0 || n > 100) return alert("Nilai harus berupa angka 0 sampai 100.");
+          const feedbackText = prompt("Umpan balik untuk siswa:", sub.feedback || "");
+          if (feedbackText === null) return;
+          try { await updateDoc(doc(db,"submissions",sub.id), { grade:n, feedback:feedbackText, gradedBy:auth.currentUser.uid, gradedAt:serverTimestamp() }); alert("Nilai tersimpan."); loadTeacherAssignments(); }
+          catch(e) { alert("Gagal menyimpan nilai: " + e.message); }
+        });
+        card.appendChild(row);
+      });
+      host.appendChild(card);
+    });
+  } catch(e) { host.textContent = "Gagal memuat tugas: " + e.message; }
+}
+
+async function loadStudentAssignments() {
+  const host = $("studentAssignmentList"); host.textContent = "Memuat tugas...";
+  try {
+    const [tasks, submissions] = await Promise.all([getCollection("assignments"), getCollection("submissions")]);
+    host.innerHTML = "";
+    if (!tasks.length) { host.textContent = "Belum ada tugas dari guru."; return; }
+    tasks.sort((a,b) => (a.dueAt || "").localeCompare(b.dueAt || ""));
+    tasks.forEach(task => {
+      const mine = submissions.find(x => x.assignmentId === task.id && x.uid === auth.currentUser.uid);
+      const card = makeFeatureCard(task.title, "Guru: " + (task.teacherName || "Guru") + " • Batas: " + formatDate(task.dueAt), task.description);
+      if (mine) {
+        addStatus(card, "Sudah dikumpulkan", "status-done");
+        const answer = document.createElement("p"); answer.textContent = "Jawaban: " + (mine.answer || "-"); card.appendChild(answer);
+        const grade = document.createElement("p"); grade.textContent = "Nilai: " + (mine.grade !== undefined ? mine.grade : "Belum dinilai"); card.appendChild(grade);
+        if (mine.feedback) { const fb=document.createElement("p"); fb.textContent="Umpan balik guru: "+mine.feedback; card.appendChild(fb); }
+      } else {
+        addStatus(card, "Belum dikumpulkan", "status-warn");
+      }
+      const label = document.createElement("label"); label.textContent = mine ? "Perbarui jawaban (opsional)" : "Jawaban tugas";
+      const area = document.createElement("textarea"); area.placeholder = "Tuliskan jawaban atau tautan dokumen tugas di sini"; area.value = mine?.answer || "";
+      const link = document.createElement("input"); link.placeholder = "Tautan lampiran (opsional, misalnya Google Drive)"; link.value = mine?.attachmentUrl || "";
+      const submit = document.createElement("button"); submit.textContent = mine ? "Perbarui pengumpulan" : "Kumpulkan tugas";
+      submit.addEventListener("click", async () => {
+        const answerText = area.value.trim(); const attachmentUrl = link.value.trim();
+        if (!answerText && !attachmentUrl) return alert("Isi jawaban atau tautan lampiran terlebih dahulu.");
+        const payload = { assignmentId:task.id, assignmentTitle:task.title, uid:auth.currentUser.uid, studentName:currentName, answer:answerText, attachmentUrl, submittedAt:serverTimestamp() };
+        try {
+          const submissionId = task.id + "_" + auth.currentUser.uid;
+          await setDoc(doc(db,"submissions",submissionId), payload, { merge:true });
+          alert("Pengumpulan tugas berhasil disimpan."); loadStudentAssignments();
+        } catch(e) { alert("Gagal mengumpulkan tugas: " + e.message); }
+      });
+      card.append(label, area, link, submit); host.appendChild(card);
+    });
+  } catch(e) { host.textContent = "Gagal memuat tugas: " + e.message; }
+}
+
+/* ----------------------- PRESENSI ------------------------ */
+window.createAttendanceSession = async function() {
+  const title = $("attendanceTitle").value.trim(); const date = $("attendanceDate").value;
+  if (!title || !date) return alert("Nama sesi dan tanggal wajib diisi.");
+  try {
+    await addDoc(collection(db,"attendanceSessions"), { title, date, createdBy:auth.currentUser.uid, teacherName:currentName, status:"open", createdAt:serverTimestamp() });
+    $("attendanceTitle").value=""; $("attendanceDate").value="";
+    alert("Sesi presensi berhasil dibuat dan dibuka."); loadTeacherAttendance();
+  } catch(e) { alert("Gagal membuat sesi: " + e.message); }
+};
+
+async function loadTeacherAttendance() {
+  const host = $("teacherAttendanceList"); host.textContent="Memuat sesi presensi...";
+  try {
+    const [allSessions, records] = await Promise.all([getCollection("attendanceSessions"), getCollection("attendance")]);
+    const sessions = allSessions.filter(session => session.createdBy === auth.currentUser.uid);
+    host.innerHTML="";
+    if (!sessions.length) { host.textContent="Belum ada sesi presensi yang kamu buat."; return; }
+    sessions.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    sessions.forEach(session => {
+      const card=makeFeatureCard(session.title, "Tanggal: "+session.date+" • Status: "+session.status, "Kehadiran tercatat: "+records.filter(r=>r.sessionId===session.id).length+" siswa");
+      addStatus(card, session.status === "open" ? "Presensi dibuka" : "Presensi ditutup", session.status === "open" ? "status-done" : "status-warn");
+      addAction(card, session.status === "open" ? "Tutup presensi" : "Buka kembali", async()=>{
+        try { await updateDoc(doc(db,"attendanceSessions",session.id),{status:session.status==="open"?"closed":"open"}); loadTeacherAttendance(); }
+        catch(e){alert("Gagal mengubah status: "+e.message);}
+      }, "secondary-btn");
+      records.filter(r=>r.sessionId===session.id).forEach(r=>{const p=document.createElement("p");p.className="feature-meta";p.textContent=r.studentName+" — "+r.status+" ("+formatDate(r.markedAt)+")";card.appendChild(p);});
+      host.appendChild(card);
+    });
+  } catch(e){host.textContent="Gagal memuat presensi: "+e.message;}
+}
+
+async function loadStudentAttendance() {
+  const host=$("studentAttendanceList");host.textContent="Memuat sesi presensi...";
+  try {
+    const [sessions,records]=await Promise.all([getCollection("attendanceSessions"),getCollection("attendance")]);
+    host.innerHTML="";
+    const available=sessions.filter(s=>s.status==="open");
+    if(!available.length){host.textContent="Belum ada sesi presensi yang dibuka guru.";return;}
+    available.sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+    available.forEach(session=>{
+      const mine=records.find(r=>r.sessionId===session.id&&r.uid===auth.currentUser.uid);
+      const card=makeFeatureCard(session.title,"Tanggal: "+session.date+" • Guru: "+(session.teacherName||"Guru"),"");
+      if(mine){addStatus(card,"Hadir tercatat","status-done");const p=document.createElement("p");p.textContent="Waktu presensi: "+formatDate(mine.markedAt);card.appendChild(p);}
+      else {addStatus(card,"Belum presensi","status-warn");addAction(card,"Saya Hadir",async()=>{
+        try {
+          const attendanceId = session.id + "_" + auth.currentUser.uid;
+          const existing = await getDoc(doc(db,"attendance",attendanceId));
+          if(existing.exists()) return alert("Presensi untuk sesi ini sudah tercatat.");
+          await setDoc(doc(db,"attendance",attendanceId),{sessionId:session.id,sessionTitle:session.title,uid:auth.currentUser.uid,studentName:currentName,status:"Hadir",markedAt:serverTimestamp()});
+          alert("Presensi berhasil dicatat.");loadStudentAttendance();
+        }catch(e){alert("Gagal mengisi presensi: "+e.message);}
+      });}
+      host.appendChild(card);
+    });
+    const history=document.createElement("div");history.innerHTML="<h3>Riwayat presensi</h3>";
+    records.filter(r=>r.uid===auth.currentUser.uid).forEach(r=>{const p=document.createElement("p");p.className="feature-meta";p.textContent=(r.sessionTitle||"Pertemuan")+" — "+r.status+" — "+formatDate(r.markedAt);history.appendChild(p);});
+    host.appendChild(history);
+  }catch(e){host.textContent="Gagal memuat presensi: "+e.message;}
+}
+
+/* ------------------------ DISKUSI ------------------------ */
+async function saveDiscussion(title, content) {
+  if(!title||!content) throw new Error("Judul dan isi diskusi wajib diisi.");
+  await addDoc(collection(db,"discussionPosts"),{title,content,uid:auth.currentUser.uid,authorName:currentName,authorRole:currentRole,createdAt:serverTimestamp()});
+}
+window.createDiscussion=async function(){
+  const title=$("discussionTitle").value.trim(),content=$("discussionContent").value.trim();
+  try{await saveDiscussion(title,content);$("discussionTitle").value="";$("discussionContent").value="";alert("Topik diskusi berhasil dibuat.");loadDiscussions("teacherDiscussionList");}
+  catch(e){alert("Gagal membuat diskusi: "+e.message);}
+};
+window.createStudentDiscussion=async function(){
+  const title=$("studentDiscussionTitle").value.trim(),content=$("studentDiscussionContent").value.trim();
+  try{await saveDiscussion(title,content);$("studentDiscussionTitle").value="";$("studentDiscussionContent").value="";alert("Topik diskusi berhasil dikirim.");loadDiscussions("studentDiscussionList");}
+  catch(e){alert("Gagal membuat diskusi: "+e.message);}
+};
+
+async function loadDiscussions(hostId) {
+  const host=$(hostId);host.textContent="Memuat diskusi...";
+  try{
+    const [posts,comments]=await Promise.all([getCollection("discussionPosts"),getCollection("discussionComments")]);
+    host.innerHTML="";
+    if(!posts.length){host.textContent="Belum ada topik diskusi. Jadilah yang pertama memulai diskusi!";return;}
+    posts.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    posts.forEach(post=>{
+      const card=makeFeatureCard(post.title,(post.authorName||"Pengguna")+" • "+(post.authorRole||"")+" • "+formatDate(post.createdAt),post.content);
+      comments.filter(c=>c.postId===post.id).forEach(c=>{const row=document.createElement("div");row.className="comment-box";const who=document.createElement("b");who.textContent=c.authorName+" ";const role=document.createElement("span");role.className="small";role.textContent="("+c.authorRole+")";const body=document.createElement("p");body.textContent=c.content;row.append(who,role,body);card.appendChild(row);});
+      const area=document.createElement("textarea");area.placeholder="Tulis tanggapan atau pertanyaan...";
+      addAction(card,"Kirim komentar",async()=>{
+        const content=area.value.trim();if(!content)return alert("Komentar tidak boleh kosong.");
+        try{await addDoc(collection(db,"discussionComments"),{postId:post.id,content,uid:auth.currentUser.uid,authorName:currentName,authorRole:currentRole,createdAt:serverTimestamp()});loadDiscussions(hostId);}
+        catch(e){alert("Gagal mengirim komentar: "+e.message);}
+      });
+      card.appendChild(area);host.appendChild(card);
+    });
+  }catch(e){host.textContent="Gagal memuat diskusi: "+e.message;}
+}
+
+/* -------------------- PEMANTAUAN ADMIN ------------------- */
+async function loadAdminAssignments(){
+  const host=$("adminAssignmentList");host.textContent="Memuat data tugas...";
+  try{const [tasks,subs]=await Promise.all([getCollection("assignments"),getCollection("submissions")]);host.innerHTML="";if(!tasks.length){host.textContent="Belum ada tugas.";return;}
+    tasks.forEach(t=>{const card=makeFeatureCard(t.title,"Guru: "+(t.teacherName||"-")+" • Tenggat: "+formatDate(t.dueAt),t.description);const own=subs.filter(s=>s.assignmentId===t.id);const p=document.createElement("p");p.textContent="Jumlah pengumpulan: "+own.length;card.appendChild(p);own.forEach(s=>{const x=document.createElement("p");x.className="feature-meta";x.textContent=s.studentName+" — "+(s.grade!==undefined?"Nilai "+s.grade:"Belum dinilai");card.appendChild(x);});host.appendChild(card);});
+  }catch(e){host.textContent="Gagal memuat pemantauan tugas: "+e.message;}
+}
+async function loadAdminAttendance(){
+  const host=$("adminAttendanceList");host.textContent="Memuat data presensi...";
+  try{const [sessions,records]=await Promise.all([getCollection("attendanceSessions"),getCollection("attendance")]);host.innerHTML="";if(!sessions.length){host.textContent="Belum ada sesi presensi.";return;}
+    sessions.forEach(s=>{const list=records.filter(r=>r.sessionId===s.id);const card=makeFeatureCard(s.title,"Guru: "+(s.teacherName||"-")+" • Tanggal: "+s.date+" • Status: "+s.status,"Jumlah siswa hadir: "+list.length);list.forEach(r=>{const p=document.createElement("p");p.className="feature-meta";p.textContent=r.studentName+" — "+formatDate(r.markedAt);card.appendChild(p);});host.appendChild(card);});
+  }catch(e){host.textContent="Gagal memuat pemantauan presensi: "+e.message;}
+}
+async function loadAdminDiscussions(){
+  const host=$("adminDiscussionList");host.textContent="Memuat diskusi...";
+  try{const [posts,comments]=await Promise.all([getCollection("discussionPosts"),getCollection("discussionComments")]);host.innerHTML="";if(!posts.length){host.textContent="Belum ada diskusi.";return;}
+    posts.forEach(p=>{const card=makeFeatureCard(p.title,(p.authorName||"-")+" • "+(p.authorRole||"")+" • "+formatDate(p.createdAt),p.content);const related=comments.filter(c=>c.postId===p.id);const count=document.createElement("p");count.textContent="Jumlah komentar: "+related.length;card.appendChild(count);related.forEach(c=>{const x=document.createElement("p");x.className="feature-meta";x.textContent=c.authorName+": "+c.content;card.appendChild(x);});host.appendChild(card);});
+  }catch(e){host.textContent="Gagal memuat pemantauan diskusi: "+e.message;}
+}
+
+</script>
+</body>
+</html>
